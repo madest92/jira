@@ -4406,6 +4406,14 @@ class JIRA(object):
                 % self._options["agile_rest_path"]
             )
 
+    # Workflow
+    def workflow_name(self, issue):
+        path = 'custom/getWfName'
+        params = {'key': str(issue)}
+        base = '{server}/rest/scriptrunner/latest/{path}'
+        j = self._get_json(path, params=params, base=base)
+        return j
+
 
 class GreenHopper(JIRA):
     def __init__(self, options=None, basic_auth=None, oauth=None, async_=None):
